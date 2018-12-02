@@ -1,0 +1,2 @@
+requests==2.20.1
+instabot==0.4.5
