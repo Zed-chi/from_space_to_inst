@@ -10,3 +10,4 @@ skipped.txt
 unfollowed.txt
 whitelist.txt
 instabot.log
+*.env
