@@ -24,7 +24,7 @@ def fetch_hubble_images_by_collection(image_collection="news", image_dir="temp")
         return False
     for id in ids:
         fetch_hubble_images_by_id(id, image_dir)
-        return True
+    return True
     
 
 
