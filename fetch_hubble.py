@@ -5,16 +5,12 @@ import requests
 
 def fetch_ids_from_image_collection(image_collection):
     url = "http://hubblesite.org/api/v3/images/"+image_collection
-    return tuple(
-        map(lambda x: x["id"], requests.get(url).json())
-    )
+    return map(lambda x: x["id"], requests.get(url).json())
 
 
 def fetch_hubble_images_links_by_id(id):
     url = "http://hubblesite.org/api/v3/image/"+str(id)
-    return tuple(
-        map(lambda x: x["file_url"], requests.get(url).json()["image_files"])
-    )
+    return map(lambda x: x["file_url"], requests.get(url).json()["image_files"])
 
 
 def fetch_hubble_images_by_id(id, image_dir):
@@ -24,12 +20,11 @@ def fetch_hubble_images_by_id(id, image_dir):
 
 def fetch_hubble_images_by_collection(image_collection="news", image_dir="temp"):
     ids = fetch_ids_from_image_collection(image_collection)
-    if ids:
-        for id in ids:
-            fetch_hubble_images_by_id(id, image_dir)
+    if not ids:
+        return False
+    for id in ids:
+        fetch_hubble_images_by_id(id, image_dir)
         return True
-    else:
-        return None
     
 
 

@@ -6,12 +6,10 @@ import requests
 def fetch_spacex_last_launch_images(image_dir="temp"):
     latest_launch_url = "https://api.spacexdata.com/v3/launches/latest"
     image_links = requests.get(latest_launch_url).json()["links"]["flickr_images"]
-    if image_links:
-        fetch_and_save_images(image_links, image_dir)
-        return True
-    else:
-        return None
-    
+    if not image_links:
+        return False
+    fetch_and_save_images(image_links, image_dir)
+    return True
 
 
 if __name__ == "__main__":

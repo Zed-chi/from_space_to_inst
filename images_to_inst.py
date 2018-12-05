@@ -6,7 +6,7 @@ from fetch_spacex import fetch_spacex_last_launch_images
 
 
 def upload_images_to_instagram(bot, image_dir):
-    images = tuple(filter(lambda x: x.endswith(".jpg"), os.listdir(image_dir)))
+    images = filter(lambda x: x.endswith(".jpg"), os.listdir(image_dir))
     for image in images:
         bot.upload_photo(os.path.join(image_dir, image))
 
