@@ -9,8 +9,6 @@ def load_and_save_image(url, path):
 
 
 def fetch_and_save_images(links, image_dir):
-    if not os.path.exists(image_dir):
-        os.makedirs(image_dir)
     for link in links:
         name = link.split("/")[-1]
         # из-за большого размера файла ввел возможность выбора

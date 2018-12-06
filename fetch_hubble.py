@@ -36,6 +36,8 @@ def fetch_hubble_images_by_collection(
 
 if __name__ == "__main__":
     img_dir = input("► Type destination dir: ")
+    if not os.path.exists(img_dir):
+        os.makedirs(img_dir)    
     img_collection = input("► Type collection you want to download: ")
     if fetch_hubble_images_by_collection(img_collection, img_dir):
         print("→ Done")

@@ -18,6 +18,8 @@ def fetch_spacex_last_launch_images(image_dir="temp"):
 
 if __name__ == "__main__":
     img_dir = input("► Type destination dir: ")
+    if not os.path.exists(img_dir):
+        os.makedirs(img_dir)
     if fetch_spacex_last_launch_images(img_dir):
         print("→ Done")
     else:
