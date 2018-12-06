@@ -1,6 +1,7 @@
 # http://hubblesite.org/api/documentation
 from utils import fetch_and_save_images
 import requests
+import os
 
 
 def fetch_ids_from_image_collection(image_collection):

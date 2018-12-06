@@ -4,6 +4,7 @@ view/2025350/RWaEzAiG#07a29989-38e3-47fb-9f64-c132b5842ff0
 '''
 from utils import fetch_and_save_images
 import requests
+import os
 
 
 def fetch_spacex_last_launch_images(image_dir="temp"):
