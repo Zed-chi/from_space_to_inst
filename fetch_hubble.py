@@ -6,8 +6,7 @@ import os
 
 def fetch_ids_from_image_collection(image_collection):
     url = "http://hubblesite.org/api/v3/images/"+image_collection
-    # tuple/list требуется для проверки на истинность
-    return tuple(map(lambda x: x["id"], requests.get(url).json()))
+    return map(lambda x: x["id"], requests.get(url).json())
 
 
 def fetch_hubble_images_links_by_id(id):
@@ -28,7 +27,7 @@ def fetch_hubble_images_by_collection(
     image_dir="temp"
 ):
     ids = fetch_ids_from_image_collection(image_collection)
-    if not ids:
+    if not tuple(ids):
         return False
     for id in ids:
         fetch_hubble_images_by_id(id, image_dir)
