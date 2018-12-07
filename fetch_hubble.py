@@ -2,6 +2,17 @@
 from utils import fetch_and_save_images
 import requests
 import os
+import argparse
+
+
+def get_args():
+    parser = argparse.ArgumentParser(
+        description="Gets img dir and hubble collection"
+    )
+    parser.add_argument("-d", default="temp", dest="img_dir")
+    parser.add_argument("-c", default="news", dest="collection")
+    args = parser.parse_args()
+    return (args.img_dir, args.collection)
 
 
 def fetch_ids_from_image_collection(image_collection):
@@ -26,8 +37,8 @@ def fetch_hubble_images_by_collection(
     image_collection="news",
     image_dir="temp"
 ):
-    ids = fetch_ids_from_image_collection(image_collection)
-    if not tuple(ids):
+    ids = tuple(fetch_ids_from_image_collection(image_collection))
+    if not ids:
         return False
     for id in ids:
         fetch_hubble_images_by_id(id, image_dir)
@@ -35,10 +46,9 @@ def fetch_hubble_images_by_collection(
 
 
 if __name__ == "__main__":
-    img_dir = input("► Type destination dir: ")
+    img_dir, img_collection = get_args()
     if not os.path.exists(img_dir):
-        os.makedirs(img_dir)    
-    img_collection = input("► Type collection you want to download: ")
+        os.makedirs(img_dir)
     if fetch_hubble_images_by_collection(img_collection, img_dir):
         print("→ Done")
     else:
